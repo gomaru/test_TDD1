@@ -9,14 +9,10 @@ class TestMoney(unittest.TestCase):
         """test method of Multiplication
         """
         five = Money.Dollar(5)
-        product = five.times(2)
-        self.assertEqual(10, product.amount)
-        product = five.times(3)
-        self.assertEqual(15, product.amount)
+        self.assertTrue(Money.Dollar(10).equals( five.times(2)) )
+        self.assertTrue(Money.Dollar(15).equals( five.times(3)) )
 
     def testEquality(self):
-        five1 = Money.Dollar(5)
-        five2 = Money.Dollar(5)
         self.assertTrue(  Money.Dollar(5).equals(Money.Dollar(5) ) )
         self.assertFalse(  Money.Dollar(5).equals(Money.Dollar(6) ) )
 
