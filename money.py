@@ -7,30 +7,24 @@ class Money:
     def __init__(self,amount, currency):
         self._amount = amount
         self._currency = currency
-    @abstractmethod
     def times(self,multiplier):
-        pass
+        return Money(self._amount*multiplier, self._currency)
     def currrency(self):
         return self._currency
 
     def equals(self,money):
-        return self._amount == money._amount  and type(self) == type(money)
+        return self._amount == money._amount  and self._currency == money._currency
 
     def dollar(self,amount):
-        return Dollar(amount)
+        return Dollar(amount,"USD")
 
     def franc(self,amount):
-        return Franc(amount)
+        return Franc(amount,"CHF")
 
 class Dollar(Money):
-    def __init__(self,amount):
-        super(Dollar,self).__init__(amount, "USD")
-    def times(self,multiplier):
-        return self.dollar(self._amount*multiplier)
+    def __init__(self,amount,currency):
+        super(Dollar,self).__init__(amount, currency)
 
 class Franc(Money):
-    def __init__(self,amount):
-        super(Franc,self).__init__(amount, "CHF")
-
-    def times(self,multiplier):
-        return self.franc(self._amount*multiplier)
+    def __init__(self,amount,currency):
+        super(Franc,self).__init__(amount, currency)
