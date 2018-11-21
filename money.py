@@ -3,11 +3,15 @@ from abc import *
 
 class Money:
     _amount=0
-    def __init__(self):
-        _amount = 0
+    _currency = ""
+    def __init__(self,amount, currency):
+        self._amount = amount
+        self._currency = currency
     @abstractmethod
     def times(self,multiplier):
         pass
+    def currrency(self):
+        return self._currency
 
     def equals(self,money):
         return self._amount == money._amount  and type(self) == type(money)
@@ -19,13 +23,14 @@ class Money:
         return Franc(amount)
 
 class Dollar(Money):
-    def __init__(self,init_amount):
-        self._amount = init_amount
+    def __init__(self,amount):
+        super(Dollar,self).__init__(amount, "USD")
     def times(self,multiplier):
-        return Dollar(self._amount*multiplier)
+        return self.dollar(self._amount*multiplier)
 
 class Franc(Money):
-    def __init__(self,init_amount):
-        self._amount = init_amount
+    def __init__(self,amount):
+        super(Franc,self).__init__(amount, "CHF")
+
     def times(self,multiplier):
-        return Franc(self._amount*multiplier)
+        return self.franc(self._amount*multiplier)
