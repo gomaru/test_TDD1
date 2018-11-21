@@ -1,9 +1,14 @@
 from abc import *
 
 
-class Money:
+class Expression(metaclass=ABCMeta):
+ #   @abstractmethod
+    def hoge(self):
+        p = 1
+
+class Money(Expression):
     _amount=0
-    _currency = ""
+    _currency = None
     def __init__(self,amount, currency):
         self._amount = amount
         self._currency = currency
@@ -21,3 +26,5 @@ class Money:
     def franc(self,amount):
         return Money(amount,"CHF")
 
+    def plus(self, money):
+        return Money(self._amount + money._amount, self._currency)
