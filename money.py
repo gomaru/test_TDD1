@@ -16,15 +16,8 @@ class Money:
         return self._amount == money._amount  and self._currency == money._currency
 
     def dollar(self,amount):
-        return Dollar(amount,"USD")
+        return Money(amount,"USD")
 
     def franc(self,amount):
-        return Franc(amount,"CHF")
+        return Money(amount,"CHF")
 
-class Dollar(Money):
-    def __init__(self,amount,currency):
-        super(Dollar,self).__init__(amount, currency)
-
-class Franc(Money):
-    def __init__(self,amount,currency):
-        super(Franc,self).__init__(amount, currency)
